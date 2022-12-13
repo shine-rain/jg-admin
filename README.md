@@ -1,2 +1,2 @@
-# study
-Recording knowledge
+# jg
+Simple authority management
