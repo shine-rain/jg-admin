@@ -1,0 +1,40 @@
+server:
+  port: ${SERVER_PORT:9900}
+
+############## spring 配置 ##############
+spring:
+  profiles:
+    include: config
+  application:
+    name: jg-admin
+  mvc:
+    throw-exception-if-no-handler-found: true
+    favicon:
+      enabled: false
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password:
+    database: 12
+    lettuce:
+      pool:
+        max-active: 300
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:127.0.0.1}:${DATASOURCE_PORT:3306}/jg?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: ${DATASOURCE_USERNAME:root}
+      password: ${DATASOURCE_PASSWORD:123456}

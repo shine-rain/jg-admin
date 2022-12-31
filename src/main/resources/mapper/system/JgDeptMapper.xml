@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.g.j.admin.dao.system.dept.JgDeptMapper">
+  <resultMap id="BaseResultMap" type="com.g.j.admin.entity.system.po.JgDept">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
+    <result column="bit_disable" jdbcType="BIT" property="bitDisable" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="pid_level_collect" jdbcType="LONGVARCHAR" property="pidLevelCollect" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="code_level_collect" jdbcType="LONGVARCHAR" property="codeLevelCollect" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+  </resultMap>
+
+  <select id="queryPageDeptList" parameterType="com.g.j.admin.entity.system.dto.DeptQueryDto" resultMap="BaseResultMap">
+    select id, dept_name, pid, sort_num, bit_disable, remarks, create_date, create_user_id, 
+    update_date, update_user_id, pid_level_collect,status,dept_code,code_level_collect,parent_code
+    from jg_dept
+    <where>
+
+      <if test="data.deptName != null and data.deptName != ''">
+        dept_name like CONCAT('%',#{data.deptName,jdbcType=VARCHAR},'%')
+      </if>
+
+    </where>
+  </select>
+
+  <select id="queryTreeDeptList" parameterType="com.g.j.admin.entity.system.dto.DeptQueryDto" resultMap="BaseResultMap">
+    select id, dept_name, pid, sort_num, bit_disable, remarks, create_date, create_user_id,
+    update_date, update_user_id, pid_level_collect,status,dept_code,code_level_collect,parent_code
+    from jg_dept
+    <where>
+
+      <if test="deptName != null and deptName != ''">
+        dept_name like CONCAT('%',#{deptName,jdbcType=VARCHAR},'%')
+      </if>
+
+    </where>
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, dept_name, pid, sort_num, bit_disable, remarks, create_date, create_user_id, 
+    update_date, update_user_id, pid_level_collect
+    from jg_dept
+  </select>
+</mapper>

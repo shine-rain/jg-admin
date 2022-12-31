@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.g.j.admin.dao.system.menu.JgMenuMapper">
+  <resultMap id="BaseResultMap" type="com.g.j.admin.entity.system.po.JgMenu">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="route_addr" jdbcType="VARCHAR" property="routeAddr" />
+    <result column="redirect" jdbcType="VARCHAR" property="redirect" />
+    <result column="menu_highlight_addr" jdbcType="VARCHAR" property="menuHighlightAddr" />
+    <result column="view" jdbcType="VARCHAR" property="view" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="bit_hide" jdbcType="BIT" property="bitHide" />
+    <result column="bit_full_page_route" jdbcType="BIT" property="bitFullPageRoute" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="pid_level_collect" jdbcType="LONGVARCHAR" property="pidLevelCollect" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="sort" jdbcType="VARCHAR" property="sort" />
+    <result column="fun_identification" jdbcType="VARCHAR" property="funIdentification" />
+  </resultMap>
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, menu_name, pid, menu_type, alias, menu_icon, route_addr, redirect, menu_highlight_addr, 
+    view, color, bit_hide, bit_full_page_route, tag, create_date, create_user_id, update_date, 
+    update_user_id, pid_level_collect
+    from jg_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, menu_name, pid, menu_type, alias, menu_icon, route_addr, redirect, menu_highlight_addr, 
+    view, color, bit_hide, bit_full_page_route, tag, create_date, create_user_id, update_date, 
+    update_user_id, pid_level_collect
+    from jg_menu
+  </select>
+</mapper>
